@@ -240,3 +240,27 @@ const pets = [
       imageUrl: "http://lsae2.iypcdn.com/static//modules/uploads/photos/language1/dino-live-22.jpg?119"
     }
   ];
+
+  const petCard = document.querySelector("#cards");
+
+  let domString = "";
+  for (const pet of pets) {
+    // CARD FROM BOOTSTRAP: https://getbootstrap.com/docs/5.1/components/card/#example Removed the button
+    domString += `
+    <div class="col">
+      <div class="card text-center">
+        <h5 class="card-header">${pet.name}</h5>
+        <div class="card-body">
+          <img src=${pet.imageUrl} class="card-img" alt=${pet.name}>
+            <p class="card-text">
+              ${pet.color} 
+              <br />
+              ${pet.specialSkill}
+            </p>
+        </div>
+        <div class="card-footer ${pet.color}">${pet.type}</div>
+      </div>
+    </div>`;
+  };
+  
+  petCard.innerHTML = domString;
