@@ -13,7 +13,7 @@ const pets = [
       color: "Brown",
       specialSkill: "Just picks the tomatoes off of a sandwich instead of requesting a whole new sandwich.",
       type: "dino",
-      imageUrl: "http://www.jozilife.co.za/wp-content/uploads/The-Dino-Expo.jpg",
+      imageUrl: "https://i.ebayimg.com/images/g/JR8AAOSwp6xhoT6y/s-l1200.webp",
     },
     {
       id: 3,
@@ -37,7 +37,7 @@ const pets = [
       color: "Brown",
       specialSkill: "Comfortable in the outdoors for up to eight hours.",
       type: "cat",
-      imageUrl: "http://www.catster.com/wp-content/uploads/2017/08/A-fluffy-cat-looking-funny-surprised-or-concerned.jpg"
+      imageUrl: "https://cat-world.com/wp-content/uploads/2022/05/brown-kitten.jpg"
     },
     {
       id: 6,
@@ -61,7 +61,7 @@ const pets = [
       color: "Grey",
       specialSkill: "Comfortable in the outdoors for up to eight hours.",
       type: "dino",
-      imageUrl: "http://www.theouthousers.com/images/jck//ThanosCopter/news/grumpasaur.jpg"
+      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Godzilla_%281954%29.jpg"
     },
     {
       id: 9,
@@ -85,7 +85,7 @@ const pets = [
       color: "Orange",
       specialSkill: "Can be around food without staring creepily at it.",
       type: "dino",
-      imageUrl: "http://www.cantref.com/userfiles/events/walking%20dino.jpg?w=600"
+      imageUrl: "https://www.jacksonville.com/gcdn/authoring/2016/11/27/NFTU/ghows-LK-656c44ac-0429-4952-bd73-273d734596e9-7fe3190c.jpeg?crop=710,402,x0,y29&width=710&height=355&format=pjpg&auto=webp"
     },
     {
       id: 12,
@@ -240,3 +240,79 @@ const pets = [
       imageUrl: "http://lsae2.iypcdn.com/static//modules/uploads/photos/language1/dino-live-22.jpg?119"
     }
   ];
+  
+  const petCard = document.querySelector("#cards");
+ 
+  const filterPets = (type) => {
+    const filteredPets = pets.filter((pet) => pet.type === type)
+    cardsOnDom(filteredPets);
+  }
+
+function setActiveButton(activeButton) {
+  document.getElementById("catBtn").classList.remove("btn-outline-primary");
+  document.getElementById("catBtn").classList.add("btn-outline-secondary");
+  document.getElementById("dogBtn").classList.remove("btn-outline-primary");
+  document.getElementById("dogBtn").classList.add("btn-outline-secondary");
+  document.getElementById("dinoBtn").classList.remove("btn-outline-primary");
+  document.getElementById("dinoBtn").classList.add("btn-outline-secondary");
+  document.getElementById("allBtn").classList.remove("btn-outline-primary");
+  document.getElementById("allBtn").classList.add("btn-outline-secondary");
+
+  document.getElementById(activeButton).classList.add("btn-outline-primary");
+  document.getElementById(activeButton).classList.remove("btn-outline-secondary");
+}
+
+  const filterContainer = document.querySelector("#filter-container");
+  filterContainer.addEventListener('click', (e) => {
+    if (e.target.id === "catBtn") {
+      filterPets("cat");
+      setActiveButton("catBtn");
+    } else if (e.target.id === "dogBtn") {
+      filterPets("dog");
+      setActiveButton("dogBtn");
+    } else if (e.target.id === "dinoBtn") {
+      filterPets("dino");
+      setActiveButton("dinoBtn");
+    } else {
+      setActiveButton("allBtn");
+      cardsOnDom(pets);
+    }
+  });
+
+  const cardsOnDom = (filtered) => {
+
+  let domString = "";
+  for (const pet of filtered) {
+  
+    domString += `
+    <div class="col">
+      <div class="card text-center h-100">
+        <h5 class="card-header">${pet.name}</h5>
+        <div class="card-body">
+          <img src=${pet.imageUrl} class="card-img" alt=${pet.name}>
+            <p class="card-text">
+              ${pet.color} 
+              <br />
+              ${pet.specialSkill}
+            </p>
+        </div>
+        <div class="card-footer ${pet.color}">${pet.type}</div>
+      </div>
+    </div>`;
+  };
+  
+  petCard.innerHTML = domString;
+  
+} 
+
+cardsOnDom(pets);
+setActiveButton("allBtn");
+
+
+
+
+
+
+
+
+ 

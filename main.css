@@ -1,0 +1,44 @@
+.Blue {
+  background-color: lightblue;
+  color: blue;
+}
+
+.Green{
+  background-color: lightgreen;
+  color: green;
+}
+
+.Yellow{
+  background-color: rgb(244, 244, 180);
+  color: rgb(125, 125, 10);
+}
+
+.Orange{
+  background-color: peachpuff;
+  color: orange;
+}
+
+.Brown{
+  background-color: burlywood;
+  color: brown;
+}
+
+.Red{
+  background-color: lightcoral;
+  color: red;
+}
+
+.Black{
+  background-color: black;
+  color: white;
+}
+
+.Purple{
+  background-color: blueviolet;
+  color: purple;
+}
+
+.Grey{
+  background-color: rgba(140, 131, 131, 0.273);
+  color: gray;
+}
