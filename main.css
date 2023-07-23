@@ -42,3 +42,31 @@
   background-color: rgba(140, 131, 131, 0.273);
   color: gray;
 }
+
+.btn {
+  background-color: blue;
+  color: white; /* Set the text color to white so it's visible on the blue background */
+}
+
+/* Optionally, you can change the appearance of the active and focus states as well */
+.btn:focus,
+.btn:active {
+  background-color: darkgray;
+}
+
+#show-form-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 18px;
+  background-color: blue;
+  color: white;
+}
+
+#show-form-button:focus,
+#show-form-button:active {
+  background-color: darkgray;
+}

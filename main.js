@@ -133,7 +133,7 @@ const pets = [
       color: "Yellow",
       specialSkill: "Does not freak out if you haven’t seen his favorite movie (The Big Lebowski).",
       type: "cat",
-      imageUrl: "http://www.funnycatsite.com/pictures/Close_Up_Yawn.jpg"
+      imageUrl: "https://www.danspapers.com/wp-content/uploads/2018/06/KittyCatDiscus.jpg"
     },
     {
       id: 18,
@@ -157,7 +157,7 @@ const pets = [
       color: "Black",
       specialSkill: "Uses litter box at appropriate hours.",
       type: "cat",
-      imageUrl: "http://www.funnycatsite.com/pictures/Lazy_White_Cat.jpg"
+      imageUrl: "https://ddgimgs-f43e.kxcdn.com/2088668/sbonhj_31a508b87e4404a48d4db16e67a6064782493e12.jpg"
     },
     {
       id: 21,
@@ -173,7 +173,7 @@ const pets = [
       color: "Orange",
       specialSkill: "Is comfortable with jokes about his receding hairline.",
       type: "cat",
-      imageUrl: "http://funnyanimalphoto.com/wp-content/uploads/2013/08/cat_caught_mouse_thegatewaypundit.jpg"
+      imageUrl: "https://wallpaperaccess.com/full/94003.jpg"
     },
     {
         id: 23,
@@ -197,7 +197,7 @@ const pets = [
       color: "Red",
       specialSkill: "Knows the words to 4 rap songs.",
       type: "cat",
-      imageUrl: "http://funbk.s3.amazonaws.com/wp-content/uploads/2016/06/funny-cat-video-which-will-make-you-laugh-louder.jpg"
+      imageUrl: "https://i0.wp.com/outwardhound.com/furtropolis/wp-content/uploads/2020/10/kitten.jpg?resize=640%2C335&ssl=1"
     },
     {
         id: 26,
@@ -297,6 +297,7 @@ function setActiveButton(activeButton) {
             </p>
         </div>
         <div class="card-footer ${pet.color}">${pet.type}</div>
+        <button type="button" id="delete-btn-pet--${pet.id}">Delete Pet</button>
       </div>
     </div>`;
   };
@@ -307,6 +308,107 @@ function setActiveButton(activeButton) {
 
 cardsOnDom(pets);
 setActiveButton("allBtn");
+
+
+const petForm = () => {
+  let domString = ""
+
+  domString += `
+  <form id="pet-form">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" id="name" aria-describedby="nameHelp" />
+  </div>
+  <div class="mb-3">
+    <label for="color" class="form-label">Color</label>
+    <input type="text" class="form-control" id="color" aria-describedby="colorHelp" />
+  </div>
+  <div class="mb-3">
+    <label for="specialSkill" class="form-label">Special Skill</label>
+    <input
+      type="text"
+      class="form-control"
+      id="specialSkill"
+      aria-describedby="specialSkillHelp"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="type" class="form-label">Type</label>
+    <input type="text" class="form-control" id="type" aria-describedby="typeHelp" />
+  </div>
+  <div class="mb-3">
+    <label for="imageURL" class="form-label">Image URL</label>
+    <input type="text" class="form-control" id="imageURL" aria-describedby="imageURLHelp" />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+  `;
+
+   // Add the event listener for form submission
+   const formContainer = document.querySelector("#form-container");
+   formContainer.innerHTML = domString;
+   document.querySelector("#pet-form").addEventListener("submit", createPet);
+ 
+};
+
+const showFormButton = document.getElementById("show-form-button");
+showFormButton.addEventListener("click", (e) => {
+  e.preventDefault(); 
+  petForm();
+});
+
+const createPet = (e) => {
+  e.preventDefault();
+
+  const nameInput = document.querySelector("#name");
+  const colorInput = document.querySelector("#color");
+  const specialSkillInput = document.querySelector("#specialSkill");
+  const typeInput = document.querySelector("#type");
+  const imageUrlInput = document.querySelector("#imageURL");
+
+  
+  if (
+    nameInput.value.trim() === "" ||
+    colorInput.value.trim() === "" ||
+    specialSkillInput.value.trim() === "" ||
+    typeInput.value.trim() === "" ||
+    imageUrlInput.value.trim() === ""
+  ) {
+    
+    alert("Please fill out all fields before submitting.");
+    return;
+  }
+
+  const petObj = {
+    id: pets.length + 1,
+    name: document.querySelector("#name").value,
+    color: document.querySelector("#color").value,
+    specialSkill: document.querySelector("#specialSkill").value,
+    type: document.querySelector("#type").value,
+    imageUrl: document.querySelector("#imageURL").value,
+  };
+
+  pets.push(petObj);
+  cardsOnDom(pets);;
+
+    
+    document.querySelector("#pet-form").reset();
+    
+    document.querySelector("#pet-form").classList.add("d-none");
+  
+};
+
+
+const formButton = document.getElementById("show-form-button");
+showFormButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  petForm();
+});
+
+document.querySelector("form").addEventListener("submit", createPet);
+
+
+
 
 
 
