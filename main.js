@@ -344,10 +344,10 @@ const petForm = () => {
 </form>
   `;
 
-   // Add the event listener for form submission
+   document.querySelector("form").addEventListener("submit", createPet);
    const formContainer = document.querySelector("#form-container");
    formContainer.innerHTML = domString;
-   document.querySelector("#pet-form").addEventListener("submit", createPet);
+   
  
 };
 
@@ -391,21 +391,33 @@ const createPet = (e) => {
   pets.push(petObj);
   cardsOnDom(pets);;
 
+    document.querySelector("#pet-form").classList.add("d-none");
     
     document.querySelector("#pet-form").reset();
     
-    document.querySelector("#pet-form").classList.add("d-none");
+    
   
 };
 
 
-const formButton = document.getElementById("show-form-button");
-showFormButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  petForm();
+
+
+petCard.addEventListener("click", (e) => {
+  if (e.target.id.includes("delete-btn-pet")) {
+    const [, int] = e.target.id.split("--");
+    const idToDelete = Number(int);
+    const index = pets.findIndex((pet) => pet.id === idToDelete);
+
+    if (index !== -1) {
+      pets.splice(index, 1);
+      cardsOnDom(pets);
+    }
+
+
+  }
 });
 
-document.querySelector("form").addEventListener("submit", createPet);
+
 
 
 
